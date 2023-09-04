@@ -6,18 +6,16 @@
 /*   By: csilva-m <csilva-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:07:14 by csilva-m          #+#    #+#             */
-/*   Updated: 2023/08/31 16:14:16 by csilva-m         ###   ########.fr       */
+/*   Updated: 2023/09/04 17:58:33 by csilva-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
-#include <unistd.h>
 
 int	ft_putchar(char c)
 {
 	write(1, &c, 1);
-	return (1);
+	return(1);
 }
 
 int	ft_putstr(char *str)
@@ -31,7 +29,27 @@ int	ft_putstr(char *str)
 	return (len);
 }
 
-int	ft_putnbr_base(int nb, char *base)
+int	ft_putnbr_base(long nb, char *base)
+{
+	
+	int		base_len;
+	int		len;
+
+	len = 0;
+	base_len = ft_strlen(base);
+
+	if (nb < 0)
+	{
+		write(1, "-", 1);
+		nb *= -1;
+	}
+	else if (nb >= base_len)
+		len += ft_putnbr_base(nb / base_len, base);
+	len += ft_putchar(base[nb % base_len]);
+	return (len);
+}
+
+int ft_put_ptr(unsigned long nb, char *base)
 {
 	long	nbr;
 	int		base_len;
@@ -49,10 +67,4 @@ int	ft_putnbr_base(int nb, char *base)
 		ft_putnbr_base(nbr / base_len, base);
 	len += ft_putchar(base[nbr % base_len]);
 	return (len);
-}
-
-int	ft_printpercent(void)
-{
-	write(1, '%', 1);
-	return (1);
 }

@@ -1,7 +1,8 @@
 NAME = libft.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-HEADER = libft.h
+HEADER = ../includes/
+SOURCES_PATH = ./src/
 
 OBJ_PATH = ./bin/
 
@@ -62,7 +63,7 @@ all: $(OBJ_PATH) $(NAME)
 $(NAME): $(OBJECTS)
 	ar -rcs $(NAME) $?
 
-$(OBJ_PATH)%.o: %.c
+$(OBJ_PATH)%.o: $(SOURCES_PATH)%.c
 	$(CC) $(CFLAGS) -c $< -o $@ -I $(HEADER)
 	
 $(OBJ_PATH):
