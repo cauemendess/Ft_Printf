@@ -11,9 +11,9 @@
 # define DEC_BASE "0123456789"
 
 int	ft_printf(const char *format, ...);
-int	ft_putnbr_base(long nb, char *base);
+int	ft_putnbr_base(long int nb, char *base);
 int	ft_putstr(char *str);
 int	ft_putchar(char c);
-int	ft_put_ptr(unsigned long nb, char *base);
+int	ft_putptr(unsigned long nb, char *base);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: csilva-m <csilva-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 11:41:14 by csilva-m          #+#    #+#             */
-/*   Updated: 2023/09/04 16:11:09 by csilva-m         ###   ########.fr       */
+/*   Updated: 2023/09/05 16:01:49 by csilva-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_printf(const char *format, ...)
 	return (ret);
 }
 
-static int	ft_validate(va_list args, char format)
+static int	ft_validate(va_list args, const char format)
 {
 	int	count;
 
@@ -54,11 +54,11 @@ static int	ft_validate(va_list args, char format)
 	else if (format == 'u')
 		count += ft_putnbr_base(va_arg(args, unsigned int), DEC_BASE);
 	else if (format == 'p')
-		count += ft_put_ptr(va_arg(args, unsigned long), HEX_BASE);
+		count += ft_putptr(va_arg(args, unsigned long), HEX_BASE);
 	else if (format == 'x')
-		count += ft_putnbr_base(va_arg(args, int), HEX_BASE);
+		count += ft_putnbr_base(va_arg(args, unsigned int), HEX_BASE);
 	else if (format == 'X')
-		count += ft_putnbr_base(va_arg(args, int), HEX_BASE_UPPER);
+		count += ft_putnbr_base(va_arg(args, unsigned int), HEX_BASE_UPPER);
 	else if (format == '%')
 		count += ft_putchar('%');
 	return (count);
