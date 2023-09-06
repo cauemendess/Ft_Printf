@@ -18,8 +18,10 @@ $(NAME): $(OBJECTS)
 	@ar rcs $(NAME) $?
 
 libft:
+ifeq ($(wildcard $($(LIBFT)/libft.a)),)
 	@make -C $(LIBFT) --no-print-directory
 	@cp $(LIBFT)/libft.a $(NAME)
+endif
 
 $(OBJ_PATH)%.o: $(SRCDIR)%.c
 	$(CC) $(CFLAGS) -c $< -o $@ -I $(INCDIR)
@@ -27,6 +29,7 @@ $(OBJ_PATH)%.o: $(SRCDIR)%.c
 $(OBJ_PATH):
 	@mkdir -p $(OBJ_PATH)
 
+bonus: all
 
 run: all
 	$(CC) -w -o $(EXECUTABLE) $(EXEC) -I $(INCDIR) -L . -lftprintf -L $(LIBFT) -lft
@@ -41,7 +44,7 @@ fclean: clean
 	@rm -f $(LIBFT)/libft.a
 	@rm -f $(EXECUTABLE)
 
+re: fclean
+	@make --no-print-directory
 
-re: fclean all
-
-.PHONY: all clean fclean re libft
+.PHONY: all clean fclean re libft bonus

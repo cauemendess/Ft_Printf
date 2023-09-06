@@ -6,7 +6,7 @@
 /*   By: csilva-m <csilva-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:07:14 by csilva-m          #+#    #+#             */
-/*   Updated: 2023/09/06 10:22:07 by csilva-m         ###   ########.fr       */
+/*   Updated: 2023/09/06 17:46:41 by csilva-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,35 @@ int	ft_putnbr_base(long int nb, char *base)
 	if (nb >= base_len)
 		len += ft_putnbr_base(nb / base_len, base);
 	len += ft_putchar(base[nb % base_len]);
+	return (len);
+}
+
+int	ft_puthex(long int nb, char *base, char specifier)
+{
+	int	len;
+
+	len = 0;
+	if (nb != 0)
+	{
+		if ((specifier == '#') && (base[15] == 'F'))
+			len += ft_putstr("0X");
+		else if ((specifier == '#') && (base[15] == 'f'))
+			len += ft_putstr("0x");
+	}
+	len += ft_putnbr_base(nb, base);
+	return (len);
+}
+
+int	ft_signal(long int nb, char *base, char specifier)
+{
+	int	len;
+
+	len = 0;
+	if ((specifier == '+') && nb >= 0)
+		len += ft_putchar('+');
+	if ((specifier == ' ') && nb >= 0)
+		len += ft_putchar(' ');
+	len += ft_putnbr_base(nb, base);
 	return (len);
 }
 
