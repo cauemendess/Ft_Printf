@@ -6,7 +6,7 @@
 /*   By: csilva-m <csilva-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 11:41:14 by csilva-m          #+#    #+#             */
-/*   Updated: 2023/09/06 18:03:25 by csilva-m         ###   ########.fr       */
+/*   Updated: 2023/09/08 15:11:16 by csilva-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	ft_validate(va_list args, const char format, char specifier)
 	else if (format == 's')
 		count += ft_putstr(va_arg(args, char *));
 	else if (format == 'i' || format == 'd')
-		count += ft_signal(va_arg(args, int), DEC_BASE, specifier);
+		count += ft_putsig(va_arg(args, int), DEC_BASE, specifier);
 	else if (format == 'u')
 		count += ft_putnbr_base(va_arg(args, unsigned int), DEC_BASE);
 	else if (format == 'p')

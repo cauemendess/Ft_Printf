@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_putsig.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csilva-m <csilva-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/30 14:07:14 by csilva-m          #+#    #+#             */
-/*   Updated: 2023/09/08 15:08:51 by csilva-m         ###   ########.fr       */
+/*   Created: 2023/09/08 15:08:54 by csilva-m          #+#    #+#             */
+/*   Updated: 2023/09/08 15:22:22 by csilva-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putchar(char c)
-{
-	write(1, &c, 1);
-	return (1);
-}
-
-int	ft_putstr(char *str)
+int	ft_putsig(long int nb, char *base, char specifier)
 {
 	int	len;
 
-	len = ft_strlen(str);
-	if (str == NULL)
-	{
-		return (ft_putstr("(null)"));
-	}
-	write(1, str, len);
+	len = 0;
+	if ((specifier == '+') && nb >= 0)
+		len += ft_putchar('+');
+	if ((specifier == ' ') && nb >= 0)
+		len += ft_putchar(' ');
+	len += ft_putnbr_base(nb, base);
 	return (len);
 }
-
-
-

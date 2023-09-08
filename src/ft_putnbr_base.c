@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csilva-m <csilva-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/30 14:07:14 by csilva-m          #+#    #+#             */
-/*   Updated: 2023/09/08 15:08:51 by csilva-m         ###   ########.fr       */
+/*   Created: 2023/09/08 14:57:00 by csilva-m          #+#    #+#             */
+/*   Updated: 2023/09/08 15:22:12 by csilva-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putchar(char c)
+int	ft_putnbr_base(long int nb, char *base)
 {
-	write(1, &c, 1);
-	return (1);
-}
-
-int	ft_putstr(char *str)
-{
+	int	base_len;
 	int	len;
 
-	len = ft_strlen(str);
-	if (str == NULL)
+	len = 0;
+	base_len = ft_strlen(base);
+	if (nb < 0)
 	{
-		return (ft_putstr("(null)"));
+		len += ft_putchar('-');
+		nb *= -1;
 	}
-	write(1, str, len);
+	if (nb >= base_len)
+		len += ft_putnbr_base(nb / base_len, base);
+	len += ft_putchar(base[nb % base_len]);
 	return (len);
 }
-
-
-
