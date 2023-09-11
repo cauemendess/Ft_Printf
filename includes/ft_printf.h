@@ -6,14 +6,13 @@
 /*   By: csilva-m <csilva-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 11:04:32 by csilva-m          #+#    #+#             */
-/*   Updated: 2023/09/11 11:22:03 by csilva-m         ###   ########.fr       */
+/*   Updated: 2023/09/11 16:36:28 by csilva-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "libft.h"
 # include <stdarg.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -23,6 +22,7 @@
 # define DEC_BASE "0123456789"
 
 int		ft_printf(const char *format, ...);
+size_t	ft_strlen(const char *s);
 int		ft_putnbr_base(long int nb, char *base);
 int		ft_putstr(char *str);
 int		ft_putchar(char c);

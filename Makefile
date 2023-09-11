@@ -1,6 +1,4 @@
 NAME = libftprintf.a
-LIBFT = ./libft
-
 SRCDIR = ./src/
 INCDIR = ./includes/
 OBJ_PATH = ./bin/
@@ -12,7 +10,7 @@ EXECUTABLE = test_executable
 
 OBJECTS = $(addprefix $(OBJ_PATH), $(SOURCES:%.c=%.o))
 
-all: libft $(OBJ_PATH) $(NAME)
+all: $(OBJ_PATH) $(NAME)
 
 
 $(OBJ_PATH)%.o: $(SRCDIR)%.c
@@ -21,9 +19,6 @@ $(OBJ_PATH)%.o: $(SRCDIR)%.c
 $(NAME): $(OBJECTS)
 	@ar rcs $(NAME) $?
 
-libft:
-	@make -C $(LIBFT) --no-print-directory
-	@cp $(LIBFT)/libft.a $(NAME)
 	
 $(OBJ_PATH):
 	@mkdir -p $(OBJ_PATH)
@@ -34,11 +29,9 @@ run: all
 
 clean: 
 	rm -rf $(OBJ_PATH)
-	@make clean -C $(LIBFT)
 
 fclean: clean
 	@rm -f $(NAME)
-	@rm -f $(LIBFT)/libft.a
 	@rm -f $(EXECUTABLE)
 
 
@@ -48,4 +41,4 @@ rebonus: fclean bonus
 
 re: fclean all
 
-.PHONY: all clean fclean re libft
+.PHONY: all clean fclean re

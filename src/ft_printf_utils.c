@@ -6,11 +6,21 @@
 /*   By: csilva-m <csilva-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:07:14 by csilva-m          #+#    #+#             */
-/*   Updated: 2023/09/11 12:00:55 by csilva-m         ###   ########.fr       */
+/*   Updated: 2023/09/11 16:33:16 by csilva-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	len;
+
+	len = 0;
+	while (s[len] != '\0')
+		len++;
+	return (len);
+}
 
 int	ft_putchar(char c)
 {
