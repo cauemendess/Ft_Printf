@@ -4,30 +4,33 @@ LIBFT = ./libft
 SRCDIR = ./src/
 INCDIR = ./includes/
 OBJ_PATH = ./bin/
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
-SOURCES = ft_printf.c ft_printf_utils.c ft_puthex.c ft_putptr.c ft_putsig.c ft_putnbr_base.c
-#EXEC = test.c
-#EXECUTABLE = test_executable
+SOURCES = ft_printf.c ft_printf_utils.c ft_puthex.c ft_putnbr_base.c ft_putptr.c ft_putsig.c
+EXEC = test.c
+EXECUTABLE = test_executable
 
 OBJECTS = $(addprefix $(OBJ_PATH), $(SOURCES:%.c=%.o))
 
 all: libft $(OBJ_PATH) $(NAME)
 
+
+$(OBJ_PATH)%.o: $(SRCDIR)%.c
+	$(CC) $(CFLAGS) -c $< -o $@ -I $(INCDIR)
+
 $(NAME): $(OBJECTS)
+	@ar rcs $(NAME) $?
 
 libft:
 	@make -C $(LIBFT) --no-print-directory
 	@cp $(LIBFT)/libft.a $(NAME)
-
-$(OBJ_PATH)%.o: $(SRCDIR)%.c
-	$(CC) $(CFLAGS) -c $< -o $@ -I $(INCDIR)
-	@ar rcs $(NAME) $?
 	
 $(OBJ_PATH):
 	@mkdir -p $(OBJ_PATH)
 
-bonus: all
+run: all
+	$(CC) -w -o $(EXECUTABLE) $(EXEC) -I $(INCDIR) -L . -lftprintf -L $(LIBFT) -lft
+	./$(EXECUTABLE)
 
 clean: 
 	rm -rf $(OBJ_PATH)
@@ -36,13 +39,13 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 	@rm -f $(LIBFT)/libft.a
-#@rm -f $(EXECUTABLE)
+	@rm -f $(EXECUTABLE)
 
-re: fclean
-	@make --no-print-directory
 
-.PHONY: all clean fclean re libft bonus
+bonus: all
 
-#run: all
-#	$(CC) -w -o $(EXECUTABLE) $(EXEC) -I $(INCDIR) -L . -lftprintf -L $(LIBFT) -lft
-#	./$(EXECUTABLE)
+rebonus: fclean bonus
+
+re: fclean all
+
+.PHONY: all clean fclean re libft
