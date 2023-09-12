@@ -5,8 +5,6 @@ OBJ_PATH = ./bin/
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 SOURCES = ft_printf.c ft_printf_utils.c ft_puthex.c ft_putnbr_base.c ft_putptr.c ft_putsig.c
-EXEC = test.c
-EXECUTABLE = test_executable
 
 GREEN = \033[1;32m
 RED = \033[1;31m
@@ -44,7 +42,3 @@ rebonus: fclean bonus
 re: fclean all
 
 .PHONY: all clean fclean re
-
-run: all
-	$(CC) $(CFLAGS) -o $(EXECUTABLE) $(EXEC) -I $(INCDIR) -L . -lftprintf 
-	./$(EXECUTABLE)
