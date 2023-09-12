@@ -30,7 +30,7 @@ $(OBJ_PATH):
 
 clean: 
 	rm -rf $(OBJ_PATH)
-	@echo "$(RED)[Objetos removidos com sucesso!]$(RESET)"
+	@echo "$(RED)[Objects removed successfully!]$(RESET)"
 
 fclean: clean
 	@rm -f $(NAME)
