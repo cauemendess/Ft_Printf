@@ -6,7 +6,7 @@ BONUS_INCDIR = ./Bonus/includes/
 OBJ_PATH = ./bin/
 CFLAGS = -Wall -Wextra -Werror
 
-SOURCES = ft_printf.c ft_printf_utils.c ft_puthex.c ft_putnbr_base.c ft_putptr.c ft_putsig.c
+SOURCES = ft_printf.c ft_printf_utils.c ft_putnbr_base.c ft_putptr.c
 BONUS_SOURCES = ft_printf_bonus.c ft_printf_utils_bonus.c ft_puthex_bonus.c ft_putnbr_base_bonus.c ft_putptr_bonus.c ft_putsig_bonus.c
 
 GREEN = \033[1;32m
