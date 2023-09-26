@@ -1,42 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_puthex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csilva-m <csilva-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/30 14:07:14 by csilva-m          #+#    #+#             */
-/*   Updated: 2023/09/11 16:33:16 by csilva-m         ###   ########.fr       */
+/*   Created: 2023/09/08 15:02:36 by csilva-m          #+#    #+#             */
+/*   Updated: 2023/09/26 11:31:08 by csilva-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	ft_strlen(const char *s)
-{
-	size_t	len;
-
-	len = 0;
-	while (s[len] != '\0')
-		len++;
-	return (len);
-}
-
-int	ft_putchar(char c)
-{
-	write(1, &c, 1);
-	return (1);
-}
-
-int	ft_putstr(char *str)
+int	ft_puthex(long int nb, char *base, char specifier)
 {
 	int	len;
 
-	if (str == NULL)
+	len = 0;
+	if (nb != 0)
 	{
-		return (ft_putstr("(null)"));
+		if ((specifier == '#') && (base[15] == 'F'))
+			len += ft_putstr("0X");
+		else if ((specifier == '#') && (base[15] == 'f'))
+			len += ft_putstr("0x");
 	}
-	len = ft_strlen(str);
-	write(1, str, len);
+	len += ft_putnbr_base(nb, base);
 	return (len);
 }
